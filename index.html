@@ -3,45 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexusStore | Toko Online Premium</title>
+    <title>PANELTLY | Hosting Pterodactyl Premium</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #3b82f6;
-            --secondary: #7c3aed;
-            --accent: #06b6d4;
-            --text: #0f172a;
-            --text-light: #64748b;
             --bg: #ffffff;
-            --bg-secondary: #f8fafc;
-            --bg-card: #ffffff;
-            --border: #e2e8f0;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --bg-card: #f8f9fa;
+            --bg-card-hover: #f1f3f4;
+            --text: #1a1a1a;
+            --text-light: #5f6368;
+            --text-muted: #80868b;
+            --border: #dadce0;
+            --border-light: #e8eaed;
+            --primary: #1a73e8;
+            --primary-dark: #1669d6;
             --radius: 8px;
             --radius-lg: 12px;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dark-theme {
-            --primary: #3b82f6;
-            --primary-dark: #2563eb;
-            --primary-light: #60a5fa;
-            --secondary: #8b5cf6;
-            --accent: #06b6d4;
-            --text: #f1f5f9;
-            --text-light: #cbd5e1;
-            --bg: #0f172a;
-            --bg-secondary: #1e293b;
-            --bg-card: #1e293b;
-            --border: #334155;
-            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.3), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+            --shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
+            --shadow-lg: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * {
@@ -55,37 +35,34 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
-            transition: var(--transition);
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1280px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 1.5rem;
         }
 
-        /* Header Styles */
+        /* Header */
         header {
-            background-color: var(--bg);
+            background: var(--bg);
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border);
-            position: sticky;
+            position: fixed;
+            width: 100%;
             top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            z-index: 1000;
         }
 
         .header-content {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 0;
-            position: relative;
         }
 
         .logo {
@@ -96,20 +73,23 @@
             font-weight: 700;
             color: var(--text);
             text-decoration: none;
-            z-index: 101;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--primary);
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border-radius: 6px;
+            width: 40px;
+            height: 40px;
+            background: var(--text);
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 1rem;
         }
 
         nav ul {
@@ -122,55 +102,13 @@
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            padding: 0.5rem 0;
+            transition: var(--transition);
             position: relative;
-            transition: var(--transition);
-        }
-
-        nav ul li a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary);
-            transition: var(--transition);
+            padding: 0.5rem 0;
         }
 
         nav ul li a:hover {
             color: var(--primary);
-        }
-
-        nav ul li a:hover:after {
-            width: 100%;
-        }
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            z-index: 101;
-        }
-
-        .theme-toggle {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            color: var(--text);
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: var(--transition);
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary);
-            color: white;
-            transform: rotate(15deg);
         }
 
         .mobile-menu {
@@ -180,47 +118,39 @@
             color: var(--text);
             font-size: 1.5rem;
             cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: var(--radius);
-            align-items: center;
-            justify-content: center;
             transition: var(--transition);
-            z-index: 101;
         }
 
         .mobile-menu:hover {
-            background: var(--bg-secondary);
+            color: var(--primary);
         }
 
         /* Hero Section */
         .hero {
-            padding: 6rem 0;
-            background: linear-gradient(135deg, var(--bg) 0%, var(--bg-secondary) 100%);
+            padding: 10rem 0 6rem;
+            text-align: center;
+            background: var(--bg);
             position: relative;
             overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            position: relative;
-            z-index: 2;
         }
 
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            line-height: 1.1;
             margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+            display: block;
         }
 
         .hero p {
             font-size: 1.25rem;
             color: var(--text-light);
-            margin-bottom: 2rem;
+            max-width: 700px;
+            margin: 0 auto 3rem;
         }
 
         .btn {
@@ -229,70 +159,38 @@
             gap: 0.5rem;
             background: var(--primary);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 0.875rem 2rem;
             border-radius: var(--radius);
             text-decoration: none;
             font-weight: 600;
             transition: var(--transition);
             border: none;
             cursor: pointer;
-            box-shadow: var(--shadow);
         }
 
         .btn:hover {
             background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
         }
 
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-
-        .btn-outline:hover {
-            background: var(--bg-secondary);
-            border-color: var(--primary);
+            border: 1px solid var(--primary);
             color: var(--primary);
         }
 
-        .btn-success {
-            background: #10b981;
-        }
-
-        .btn-success:hover {
-            background: #059669;
-        }
-
-        .hero-bg {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary) 100%);
-            opacity: 0.05;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: morph 15s linear infinite;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            25% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%; }
-            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-            75% { border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
         }
 
         /* Products Section */
         .section {
-            padding: 5rem 0;
+            padding: 6rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         .section-title h2 {
@@ -303,134 +201,99 @@
 
         .section-title p {
             color: var(--text-light);
+            font-size: 1.125rem;
             max-width: 600px;
             margin: 0 auto;
         }
 
-        .products-grid {
+        .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .product-card {
+        .package-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
-            overflow: hidden;
+            padding: 2rem;
             box-shadow: var(--shadow);
-            transition: var(--transition);
             border: 1px solid var(--border);
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .product-img {
-            height: 200px;
-            background: var(--bg-secondary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
-        .product-img i {
-            font-size: 4rem;
-            color: var(--primary);
-            opacity: 0.8;
+        .package-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            background: var(--bg-card-hover);
         }
 
-        .product-badge {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--accent);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .product-info {
-            padding: 1.5rem;
-        }
-
-        .product-title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .product-description {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-price {
-            font-weight: 700;
-            color: var(--primary);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .product-actions {
+        .package-header {
             display: flex;
-            gap: 0.5rem;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
-        .product-btn {
-            flex: 1;
-            padding: 0.75rem;
-            border: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
+        .package-name {
+            font-size: 1.5rem;
+            font-weight: 700;
         }
 
-        .product-btn-primary {
-            background: var(--primary);
-            color: white;
+        .package-price {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
-        .product-btn-primary:hover {
-            background: var(--primary-dark);
+        .package-features {
+            list-style: none;
+            margin-bottom: 2rem;
         }
 
-        .product-btn-secondary {
-            background: var(--bg-secondary);
-            color: var(--text);
-            border: 1px solid var(--border);
+        .package-features li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .product-btn-secondary:hover {
-            background: var(--border);
+        .package-features i {
+            color: var(--primary);
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+        }
+
+        .package-btn {
+            width: 100%;
+            text-align: center;
         }
 
         /* Features Section */
         .features {
-            background: var(--bg-secondary);
+            background: var(--bg-card);
+            position: relative;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
         }
 
         .feature-card {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
             text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--bg);
+            border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
-            transition: var(--transition);
             border: 1px solid var(--border);
+            transition: var(--transition);
         }
 
         .feature-card:hover {
@@ -439,21 +302,21 @@
         }
 
         .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            width: 70px;
+            height: 70px;
+            background: var(--text);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
             color: white;
-            font-size: 1.5rem;
+            font-size: 1.75rem;
         }
 
         .feature-title {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.375rem;
+            font-weight: 700;
             margin-bottom: 1rem;
         }
 
@@ -461,9 +324,31 @@
             color: var(--text-light);
         }
 
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
         /* Footer */
         footer {
-            background: var(--bg-secondary);
+            background: var(--bg-card);
             padding: 4rem 0 2rem;
             border-top: 1px solid var(--border);
         }
@@ -476,8 +361,8 @@
         }
 
         .footer-column h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.375rem;
+            font-weight: 700;
             margin-bottom: 1.5rem;
         }
 
@@ -499,219 +384,58 @@
             color: var(--primary);
         }
 
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: var(--bg-card);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            text-decoration: none;
-            transition: var(--transition);
-            border: 1px solid var(--border);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-3px);
-        }
-
         .copyright {
             text-align: center;
             padding-top: 2rem;
             border-top: 1px solid var(--border);
-            color: var(--text-light);
+            color: var(--text-muted);
             font-size: 0.9rem;
         }
 
-        /* Page Content */
-        .page-content {
-            display: none;
-            min-height: 60vh;
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .page-content.active {
-            display: block;
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
 
-        .page-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            text-align: center;
+        .delay-1 {
+            animation-delay: 0.2s;
         }
 
-        .contact-form, .callback-form {
-            max-width: 600px;
-            margin: 0 auto;
+        .delay-2 {
+            animation-delay: 0.4s;
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        .delay-3 {
+            animation-delay: 0.6s;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.75rem 1rem;
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            background: var(--bg-card);
-            color: var(--text);
-            transition: var(--transition);
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 0.75rem;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .submit-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        /* Callback Section */
-        .callback-info {
-            background: var(--bg-card);
-            padding: 2rem;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow);
-            margin-bottom: 2rem;
-            border-left: 4px solid var(--primary);
-        }
-
-        .callback-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .step-card {
-            background: var(--bg-card);
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-            font-weight: 600;
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
-        }
-
-        .payment-method {
-            background: var(--bg-card);
-            padding: 1rem;
-            border-radius: var(--radius);
-            text-align: center;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-
-        .payment-method:hover {
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .payment-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        /* Success Message */
-        .success-message {
-            background: #d1fae5;
-            color: #065f46;
-            padding: 1.5rem;
-            border-radius: var(--radius);
-            text-align: center;
-            margin-bottom: 2rem;
-            border: 1px solid #a7f3d0;
-        }
-
-        .dark-theme .success-message {
-            background: #064e3b;
-            color: #a7f3d0;
-            border-color: #065f46;
-        }
-
-        /* Mobile Navigation */
+        /* Mobile Styles */
         @media (max-width: 768px) {
-            .header-content {
-                flex-wrap: nowrap;
-            }
-
-            .logo {
-                flex: 1;
-            }
-
             nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: var(--bg-card);
-                box-shadow: var(--shadow-xl);
-                transition: var(--transition);
-                z-index: 100;
-                padding: 5rem 2rem 2rem;
-                border-left: 1px solid var(--border);
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg);
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border);
             }
 
             nav.active {
-                right: 0;
+                display: block;
+                animation: fadeInUp 0.3s ease-out;
             }
 
             nav ul {
@@ -719,42 +443,12 @@
                 gap: 1.5rem;
             }
 
-            nav ul li a {
-                display: block;
-                padding: 0.75rem 1rem;
-                border-radius: var(--radius);
-                font-size: 1.1rem;
-            }
-
-            nav ul li a:hover {
-                background: var(--bg-secondary);
-            }
-
             .mobile-menu {
-                display: flex;
-                margin-left: 1rem;
+                display: block;
             }
 
-            .mobile-menu.active .fa-bars:before {
-                content: "\f00d";
-            }
-
-            .overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                opacity: 0;
-                visibility: hidden;
-                transition: var(--transition);
-                z-index: 99;
-            }
-
-            .overlay.active {
-                opacity: 1;
-                visibility: visible;
+            .hero {
+                padding: 8rem 0 4rem;
             }
 
             .hero h1 {
@@ -762,18 +456,15 @@
             }
 
             .hero p {
-                font-size: 1.1rem;
-            }
-        }
-
-        /* Desktop Navigation */
-        @media (min-width: 769px) {
-            .mobile-menu {
-                display: none;
+                font-size: 1.125rem;
             }
 
-            .overlay {
-                display: none;
+            .section {
+                padding: 4rem 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
             }
         }
     </style>
@@ -783,555 +474,273 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="#" class="logo" data-page="home">
-                    <div class="logo-icon">N</div>
-                    NexusStore
+                <a href="#" class="logo">
+                    <div class="logo-icon">P</div>
+                    PANELTLY
                 </a>
-                
-                <nav>
+
+                <nav id="main-nav">
                     <ul>
-                        <li><a href="#" data-page="home">Beranda</a></li>
-                        <li><a href="#" data-page="products">Produk</a></li>
-                        <li><a href="#" data-page="callback">Pembayaran</a></li>
-                        <li><a href="#" data-page="about">Tentang</a></li>
-                        <li><a href="#" data-page="contact">Kontak</a></li>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#packages">Paket</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#contact">Kontak</a></li>
                     </ul>
                 </nav>
-                
-                <div class="header-actions">
-                    <button class="theme-toggle" aria-label="Toggle theme">
-                        <i class="fas fa-moon"></i>
-                    </button>
-                    <button class="mobile-menu">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+
+                <button class="mobile-menu" id="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
-        <div class="overlay"></div>
     </header>
 
-    <!-- Home Page -->
-    <section id="home" class="page-content active">
-        <div class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Teknologi Masa Depan di Genggaman Anda</h1>
-                    <p>Temukan produk teknologi terbaru dengan kualitas premium dan desain elegan. Pengalaman berbelanja online yang tak terlupakan.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                        <a href="#" class="btn" data-page="products">
-                            <i class="fas fa-shopping-bag"></i>
-                            Belanja Sekarang
-                        </a>
-                        <a href="#" class="btn btn-outline" data-page="about">
-                            <i class="fas fa-info-circle"></i>
-                            Pelajari Lebih
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-bg"></div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1 class="fade-in-up">
+                <span>Panel Hosting Pterodactyl Premium</span>
+                Pengalaman Gaming Terbaik
+            </h1>
+            <p class="fade-in-up delay-1">Nikmati pengalaman hosting game terbaik dengan panel Pterodactyl VVIP. Garansi 20 hari, dukungan 24/7, dan harga terjangkau.</p>
+            <div class="fade-in-up delay-2">
+                <a href="#packages" class="btn">Lihat Paket</a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;">Hubungi Kami</a>
             </div>
         </div>
+    </section>
 
-        <div class="section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Produk Unggulan</h2>
-                    <p>Pilihan produk terbaik dengan teknologi terkini untuk kebutuhan sehari-hari Anda</p>
-                </div>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-laptop"></i>
-                            <div class="product-badge">Terbaru</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusBook Pro</h3>
-                            <p class="product-description">Laptop premium dengan performa tinggi dan desain elegan.</p>
-                            <div class="product-price">Rp 15.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div class="product-badge">Populer</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusPhone X</h3>
-                            <p class="product-description">Smartphone flagship dengan kamera canggih dan baterai tahan lama.</p>
-                            <div class="product-price">Rp 9.499.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-headphones"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusSound Pro</h3>
-                            <p class="product-description">Headphone wireless dengan kualitas suara studio dan noise cancellation.</p>
-                            <div class="product-price">Rp 2.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-smartwatch"></i>
-                            <div class="product-badge">Diskon</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusWatch 3</h3>
-                            <p class="product-description">Smartwatch dengan fitur kesehatan lengkap dan desain premium.</p>
-                            <div class="product-price">Rp 3.799.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Packages Section -->
+    <section class="section" id="packages">
+        <div class="container">
+            <div class="section-title">
+                <h2>Paket Hosting Pterodactyl</h2>
+                <p>Pilih paket yang sesuai dengan kebutuhan server Anda</p>
             </div>
-        </div>
 
-        <div class="section features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Mengapa Memilih Kami?</h2>
-                    <p>Kami berkomitmen memberikan pengalaman berbelanja terbaik untuk Anda</p>
+            <div class="packages-grid">
+                <!-- Paket 1GB -->
+                <div class="package-card fade-in-up">
+                    <div class="package-header">
+                        <div class="package-name">Paket 1GB</div>
+                        <div class="package-price">Rp 2.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
                 </div>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shipping-fast"></i>
-                        </div>
-                        <h3 class="feature-title">Pengiriman Cepat</h3>
-                        <p class="feature-description">Pengiriman ke seluruh Indonesia dengan layanan ekspres 1-2 hari</p>
+
+                <!-- Paket 2GB -->
+                <div class="package-card fade-in-up delay-1">
+                    <div class="package-header">
+                        <div class="package-name">Paket 2GB</div>
+                        <div class="package-price">Rp 4.000</div>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h3 class="feature-title">Garansi Resmi</h3>
-                        <p class="feature-description">Semua produk dilengkapi dengan garansi resmi dari produsen</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 3GB -->
+                <div class="package-card fade-in-up delay-2">
+                    <div class="package-header">
+                        <div class="package-name">Paket 3GB</div>
+                        <div class="package-price">Rp 6.000</div>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-headset"></i>
-                        </div>
-                        <h3 class="feature-title">Dukungan 24/7</h3>
-                        <p class="feature-description">Tim customer service siap membantu Anda kapan saja</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 4GB -->
+                <div class="package-card fade-in-up">
+                    <div class="package-header">
+                        <div class="package-name">Paket 4GB</div>
+                        <div class="package-price">Rp 8.000</div>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-undo"></i>
-                        </div>
-                        <h3 class="feature-title">Pengembalian Mudah</h3>
-                        <p class="feature-description">Kebijakan pengembalian 30 hari untuk semua produk</p>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 5GB -->
+                <div class="package-card fade-in-up delay-1">
+                    <div class="package-header">
+                        <div class="package-name">Paket 5GB</div>
+                        <div class="package-price">Rp 10.000</div>
                     </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 6GB -->
+                <div class="package-card fade-in-up delay-2">
+                    <div class="package-header">
+                        <div class="package-name">Paket 6GB</div>
+                        <div class="package-price">Rp 12.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 7GB -->
+                <div class="package-card fade-in-up">
+                    <div class="package-header">
+                        <div class="package-name">Paket 7GB</div>
+                        <div class="package-price">Rp 14.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 8GB -->
+                <div class="package-card fade-in-up delay-1">
+                    <div class="package-header">
+                        <div class="package-name">Paket 8GB</div>
+                        <div class="package-price">Rp 16.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 9GB -->
+                <div class="package-card fade-in-up delay-2">
+                    <div class="package-header">
+                        <div class="package-name">Paket 9GB</div>
+                        <div class="package-price">Rp 18.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
+                </div>
+
+                <!-- Paket 10GB -->
+                <div class="package-card fade-in-up">
+                    <div class="package-header">
+                        <div class="package-name">Paket 10GB</div>
+                        <div class="package-price">Rp 20.000</div>
+                    </div>
+                    <ul class="package-features">
+                        <li><i class="fas fa-check"></i> Panel VVIP</li>
+                        <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
+                        <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
+                        <li><i class="fas fa-check"></i> Support 24/7</li>
+                    </ul>
+                    <button class="btn package-btn">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Page -->
-    <section id="products" class="page-content">
-        <div class="section">
-            <div class="container">
-                <h1 class="page-title">Semua Produk</h1>
-                <div class="products-grid">
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-laptop"></i>
-                            <div class="product-badge">Terbaru</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusBook Pro</h3>
-                            <p class="product-description">Laptop premium dengan performa tinggi dan desain elegan.</p>
-                            <div class="product-price">Rp 15.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
+    <!-- Features Section -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Mengapa Memilih PANELTLY?</h2>
+                <p>Kami memberikan yang terbaik untuk pengalaman hosting Anda</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-mobile-alt"></i>
-                            <div class="product-badge">Populer</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusPhone X</h3>
-                            <p class="product-description">Smartphone flagship dengan kamera canggih dan baterai tahan lama.</p>
-                            <div class="product-price">Rp 9.499.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <h3 class="feature-title">Garansi 20 Hari</h3>
+                    <p class="feature-description">Panel VVIP dilengkapi dengan garansi 20 hari untuk kenyamanan Anda</p>
+                </div>
+
+                <div class="feature-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
                     </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-headphones"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusSound Pro</h3>
-                            <p class="product-description">Headphone wireless dengan kualitas suara studio dan noise cancellation.</p>
-                            <div class="product-price">Rp 2.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <h3 class="feature-title">Aktivasi Cepat</h3>
+                    <p class="feature-description">Panel aktif dalam 5-15 menit setelah pembayaran berhasil</p>
+                </div>
+
+                <div class="feature-card fade-in-up delay-2">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-smartwatch"></i>
-                            <div class="product-badge">Diskon</div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusWatch 3</h3>
-                            <p class="product-description">Smartwatch dengan fitur kesehatan lengkap dan desain premium.</p>
-                            <div class="product-price">Rp 3.799.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <h3 class="feature-title">Dukungan 24/7</h3>
+                    <p class="feature-description">Tim support siap membantu Anda kapan saja, setiap hari</p>
+                </div>
+
+                <div class="feature-card fade-in-up delay-3">
+                    <div class="feature-icon">
+                        <i class="fas fa-server"></i>
                     </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-tablet-alt"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusTab Pro</h3>
-                            <p class="product-description">Tablet dengan layar 2K dan performa tinggi untuk produktivitas.</p>
-                            <div class="product-price">Rp 7.299.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-camera"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusCam Pro</h3>
-                            <p class="product-description">Kamera mirrorless dengan sensor full-frame dan stabilisasi 5-axis.</p>
-                            <div class="product-price">Rp 21.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusGame Pro</h3>
-                            <p class="product-description">Konsol gaming dengan grafis 4K dan library game eksklusif.</p>
-                            <div class="product-price">Rp 8.999.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="product-card">
-                        <div class="product-img">
-                            <i class="fas fa-tv"></i>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">NexusTV 4K</h3>
-                            <p class="product-description">Smart TV 65" dengan layar OLED dan suara surround Dolby Atmos.</p>
-                            <div class="product-price">Rp 18.499.000</div>
-                            <div class="product-actions">
-                                <button class="product-btn product-btn-primary">Beli Sekarang</button>
-                                <button class="product-btn product-btn-secondary">
-                                    <i class="fas fa-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="feature-title">Performa Tinggi</h3>
+                    <p class="feature-description">Server dengan spesifikasi tinggi untuk pengalaman gaming terbaik</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Callback Page -->
-    <section id="callback" class="page-content">
-        <div class="section">
-            <div class="container">
-                <h1 class="page-title">Pembayaran & Callback</h1>
-                
-                <div class="callback-info">
-                    <h2 style="margin-bottom: 1rem; color: var(--primary);">Integrasi Tripay Payment Gateway</h2>
-                    <p style="color: var(--text-light); margin-bottom: 1rem;">Kami telah terintegrasi dengan Tripay untuk memproses pembayaran Anda dengan aman dan cepat. Sistem callback akan secara otomatis memperbarui status pesanan setelah pembayaran berhasil.</p>
-                    
-                    <div class="payment-methods">
-                        <div class="payment-method">
-                            <div class="payment-icon">
-                                <i class="fas fa-university"></i>
-                            </div>
-                            <div>Transfer Bank</div>
-                        </div>
-                        <div class="payment-method">
-                            <div class="payment-icon">
-                                <i class="fas fa-credit-card"></i>
-                            </div>
-                            <div>Kartu Kredit</div>
-                        </div>
-                        <div class="payment-method">
-                            <div class="payment-icon">
-                                <i class="fas fa-wallet"></i>
-                            </div>
-                            <div>E-Wallet</div>
-                        </div>
-                        <div class="payment-method">
-                            <div class="payment-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div>Retail</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="callback-steps">
-                    <div class="step-card">
-                        <div class="step-number">1</div>
-                        <h3>Pilih Produk</h3>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">Pilih produk yang ingin Anda beli dan tambahkan ke keranjang</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">2</div>
-                        <h3>Checkout</h3>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">Isi data diri dan pilih metode pembayaran Tripay</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">3</div>
-                        <h3>Bayar</h3>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">Lakukan pembayaran melalui channel yang dipilih</p>
-                    </div>
-                    <div class="step-card">
-                        <div class="step-number">4</div>
-                        <h3>Callback</h3>
-                        <p style="color: var(--text-light); font-size: 0.9rem;">Sistem akan otomatis konfirmasi via callback Tripay</p>
-                    </div>
-                </div>
-
-                <div class="callback-form">
-                    <h2 style="text-align: center; margin: 40px 0 20px;">Form Pemesanan</h2>
-                    
-                    <div class="form-group">
-                        <label for="order-name">Nama Lengkap</label>
-                        <input type="text" id="order-name" class="form-control" placeholder="Masukkan nama lengkap">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="order-email">Email</label>
-                        <input type="email" id="order-email" class="form-control" placeholder="Masukkan alamat email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="order-phone">Nomor Telepon</label>
-                        <input type="tel" id="order-phone" class="form-control" placeholder="Masukkan nomor telepon">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="order-product">Produk yang Dipilih</label>
-                        <select id="order-product" class="form-control">
-                            <option value="">Pilih produk</option>
-                            <option value="nexusbook">NexusBook Pro - Rp 15.999.000</option>
-                            <option value="nexusphone">NexusPhone X - Rp 9.499.000</option>
-                            <option value="nexussound">NexusSound Pro - Rp 2.999.000</option>
-                            <option value="nexuswatch">NexusWatch 3 - Rp 3.799.000</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="order-payment">Metode Pembayaran</label>
-                        <select id="order-payment" class="form-control">
-                            <option value="">Pilih metode pembayaran</option>
-                            <option value="bca">BCA Transfer</option>
-                            <option value="bni">BNI Transfer</option>
-                            <option value="bri">BRI Transfer</option>
-                            <option value="mandiri">Mandiri Transfer</option>
-                            <option value="gopay">GoPay</option>
-                            <option value="ovo">OVO</option>
-                            <option value="dana">DANA</option>
-                            <option value="cc">Kartu Kredit</option>
-                        </select>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn btn-success">
-                        <i class="fas fa-lock"></i>
-                        Lanjutkan ke Pembayaran Tripay
-                    </button>
-                </div>
-
-                <div class="success-message" style="display: none;">
-                    <h3><i class="fas fa-check-circle"></i> Pesanan Berhasil Diproses!</h3>
-                    <p>Silakan lanjutkan pembayaran melalui halaman Tripay yang akan ditampilkan. Status pesanan akan diperbarui otomatis melalui callback.</p>
-                </div>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+                <p>Butuh bantuan? Tim support kami siap membantu</p>
             </div>
-        </div>
-    </section>
 
-    <!-- About Page -->
-    <section id="about" class="page-content">
-        <div class="section">
-            <div class="container">
-                <h1 class="page-title">Tentang Kami</h1>
-                <div style="max-width: 800px; margin: 0 auto;">
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow); margin-bottom: 2rem;">
-                        <h2 style="margin-bottom: 1rem;">Visi Kami</h2>
-                        <p style="color: var(--text-light);">Menjadi destinasi utama untuk produk teknologi inovatif yang meningkatkan kualitas hidup dan memberdayakan masyarakat digital Indonesia.</p>
+            <div class="contact-grid">
+                <div class="contact-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
                     </div>
-                    
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow); margin-bottom: 2rem;">
-                        <h2 style="margin-bottom: 1rem;">Misi Kami</h2>
-                        <ul style="color: var(--text-light); padding-left: 1.5rem;">
-                            <li style="margin-bottom: 0.5rem;">Menyediakan produk teknologi terbaru dengan kualitas terjamin</li>
-                            <li style="margin-bottom: 0.5rem;">Memberikan pengalaman berbelanja online yang mudah, aman, dan menyenangkan</li>
-                            <li style="margin-bottom: 0.5rem;">Mendukung komunitas teknologi Indonesia dengan konten edukatif</li>
-                            <li>Menjadi mitra terpercaya dalam perjalanan digital masyarakat Indonesia</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: var(--bg-card); padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow);">
-                        <h2 style="margin-bottom: 1rem;">Nilai Kami</h2>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                            <div>
-                                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Inovasi</h3>
-                                <p style="color: var(--text-light); font-size: 0.9rem;">Terus mengikuti perkembangan teknologi terbaru untuk memberikan produk terbaik</p>
-                            </div>
-                            <div>
-                                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Integritas</h3>
-                                <p style="color: var(--text-light); font-size: 0.9rem;">Menjaga kepercayaan pelanggan dengan transparansi dan kejujuran</p>
-                            </div>
-                            <div>
-                                <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Komitmen</h3>
-                                <p style="color: var(--text-light); font-size: 0.9rem;">Berkomitmen memberikan layanan terbaik sebelum, selama, dan setelah pembelian</p>
-                            </div>
-                        </div>
-                    </div>
+                    <h3 class="feature-title">WhatsApp</h3>
+                    <p class="feature-description">6283129087226</p>
+                    <a href="https://wa.me/6283129087226" class="btn" style="margin-top: 1.5rem;">Hubungi</a>
                 </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Contact Page -->
-    <section id="contact" class="page-content">
-        <div class="section">
-            <div class="container">
-                <h1 class="page-title">Hubungi Kami</h1>
-                
-                <div class="features-grid" style="margin-bottom: 3rem;">
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <h3 class="feature-title">Alamat</h3>
-                        <p class="feature-description">Jl. Teknologi No. 123<br>Jakarta Selatan, 12950</p>
+                <div class="contact-card fade-in-up delay-1">
+                    <div class="feature-icon">
+                        <i class="fab fa-telegram"></i>
                     </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <h3 class="feature-title">Telepon</h3>
-                        <p class="feature-description">+62 21 1234 5678<br>+62 812 3456 7890</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <h3 class="feature-title">Email</h3>
-                        <p class="feature-description">info@nexusstore.com<br>support@nexusstore.com</p>
-                    </div>
-                    
-                    <div class="feature-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <h3 class="feature-title">Jam Operasional</h3>
-                        <p class="feature-description">Senin - Jumat: 09.00 - 18.00<br>Sabtu: 09.00 - 15.00</p>
-                    </div>
-                </div>
-                
-                <div class="contact-form">
-                    <h2 style="text-align: center; margin: 40px 0 20px;">Kirim Pesan</h2>
-                    
-                    <div class="form-group">
-                        <label for="contact-name">Nama</label>
-                        <input type="text" id="contact-name" class="form-control" placeholder="Masukkan nama Anda">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-email">Email</label>
-                        <input type="email" id="contact-email" class="form-control" placeholder="Masukkan alamat email">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-subject">Subjek</label>
-                        <input type="text" id="contact-subject" class="form-control" placeholder="Masukkan subjek pesan">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="contact-message">Pesan</label>
-                        <textarea id="contact-message" class="form-control" placeholder="Tulis pesan Anda di sini"></textarea>
-                    </div>
-                    
-                    <button type="submit" class="submit-btn">Kirim Pesan</button>
+                    <h3 class="feature-title">Telegram</h3>
+                    <p class="feature-description">@agungdev</p>
+                    <a href="https://t.me/agungdev" class="btn" style="margin-top: 1.5rem;">Hubungi</a>
                 </div>
             </div>
         </div>
@@ -1342,168 +751,100 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>NexusStore</h3>
-                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Toko online terpercaya untuk semua kebutuhan teknologi Anda dengan kualitas terbaik dan harga terjangkau.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
+                    <h3>PANELTLY</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Penyedia panel hosting Pterodactyl terpercaya dengan layanan VVIP bergaransi.</p>
                 </div>
-                
+
                 <div class="footer-column">
                     <h3>Menu</h3>
                     <ul>
-                        <li><a href="#" data-page="home">Beranda</a></li>
-                        <li><a href="#" data-page="products">Produk</a></li>
-                        <li><a href="#" data-page="callback">Pembayaran</a></li>
-                        <li><a href="#" data-page="about">Tentang</a></li>
-                        <li><a href="#" data-page="contact">Kontak</a></li>
+                        <li><a href="#home">Beranda</a></li>
+                        <li><a href="#packages">Paket Hosting</a></li>
+                        <li><a href="#features">Fitur</a></li>
+                        <li><a href="#contact">Kontak</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-column">
-                    <h3>Bantuan</h3>
-                    <ul>
-                        <li><a href="#">Cara Berbelanja</a></li>
-                        <li><a href="#">Pembayaran</a></li>
-                        <li><a href="#">Pengiriman</a></li>
-                        <li><a href="#">Garansi</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Kebijakan</h3>
-                    <ul>
-                        <li><a href="#">Syarat & Ketentuan</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                        <li><a href="#">Kebijakan Pengembalian</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
+
             </div>
-            
+
             <div class="copyright">
-                <p>&copy; 2023 NexusStore. All rights reserved.</p>
+                <p>&copy; 2023 PANELTLY. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Toggle Theme
-        const themeToggle = document.querySelector('.theme-toggle');
-        const themeIcon = themeToggle.querySelector('i');
-        
-        // Check for saved theme preference or default to light
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        
-        if (currentTheme === 'dark') {
-            document.body.classList.add('dark-theme');
-            themeIcon.classList.remove('fa-moon');
-            themeIcon.classList.add('fa-sun');
-        }
-        
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            
-            if (document.body.classList.contains('dark-theme')) {
-                themeIcon.classList.remove('fa-moon');
-                themeIcon.classList.add('fa-sun');
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.classList.remove('fa-sun');
-                themeIcon.classList.add('fa-moon');
-                localStorage.setItem('theme', 'light');
-            }
-        });
-        
-        // Page Navigation
-        const pageLinks = document.querySelectorAll('a[data-page]');
-        const pages = document.querySelectorAll('.page-content');
-        
-        pageLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                
-                const targetPage = link.getAttribute('data-page');
-                
-                // Hide all pages
-                pages.forEach(page => {
-                    page.classList.remove('active');
-                });
-                
-                // Show target page
-                document.getElementById(targetPage).classList.add('active');
-                
-                // Close mobile menu if open
-                closeMobileMenu();
-                
-                // Scroll to top
-                window.scrollTo(0, 0);
-            });
-        });
-        
         // Mobile Menu Toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu');
-        const nav = document.querySelector('nav');
-        const overlay = document.querySelector('.overlay');
-        
-        function openMobileMenu() {
-            nav.classList.add('active');
-            overlay.classList.add('active');
-            mobileMenuBtn.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeMobileMenu() {
-            nav.classList.remove('active');
-            overlay.classList.remove('active');
-            mobileMenuBtn.classList.remove('active');
-            document.body.style.overflow = '';
-        }
-        
+        const mobileMenuBtn = document.getElementById('mobile-menu');
+        const nav = document.getElementById('main-nav');
+
         mobileMenuBtn.addEventListener('click', () => {
-            if (nav.classList.contains('active')) {
-                closeMobileMenu();
-            } else {
-                openMobileMenu();
-            }
+            nav.classList.toggle('active');
         });
-        
-        overlay.addEventListener('click', closeMobileMenu);
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav a').forEach(link => {
-            link.addEventListener('click', closeMobileMenu);
-        });
-        
-        // Product buttons
-        const productButtons = document.querySelectorAll('.product-btn-primary');
-        
-        productButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                alert('Produk telah ditambahkan ke keranjang!');
-            });
-        });
-        
-        // Form submissions
-        const submitButtons = document.querySelectorAll('.submit-btn');
-        
-        submitButtons.forEach(button => {
-            button.addEventListener('click', (e) => {
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 
-                if (button.closest('#callback')) {
-                    // For callback form - show success message
-                    document.querySelector('.success-message').style.display = 'block';
-                    setTimeout(() => {
-                        document.querySelector('.success-message').style.display = 'none';
-                    }, 5000);
-                } else {
-                    alert('Terima kasih! Pesan Anda telah berhasil dikirim.');
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    nav.classList.remove('active');
                 }
             });
+        });
+
+        // Package buttons
+        const packageButtons = document.querySelectorAll('.package-btn');
+
+        packageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const packageName = button.closest('.package-card').querySelector('.package-name').textContent;
+                const packagePrice = button.closest('.package-card').querySelector('.package-price').textContent;
+                
+                const message = `Halo, saya ingin memesan ${packageName} dengan harga ${packagePrice}. Bagaimana cara pemesanannya?`;
+                const whatsappUrl = `https://wa.me/6283129087226?text=${encodeURIComponent(message)}`;
+                
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+
+        // Animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.package-card, .feature-card, .contact-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
         });
     </script>
 </body>
