@@ -15,13 +15,15 @@
             --text-muted: #80868b;
             --border: #dadce0;
             --border-light: #e8eaed;
-            --primary: #1a73e8;
-            --primary-dark: #1669d6;
-            --radius: 8px;
-            --radius-lg: 12px;
-            --shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3), 0 1px 3px 1px rgba(60, 64, 67, 0.15);
-            --shadow-lg: 0 1px 3px 0 rgba(60, 64, 67, 0.3), 0 4px 8px 3px rgba(60, 64, 67, 0.15);
+            --primary: #0070f3;
+            --primary-dark: #0051b3;
+            --radius: 6px;
+            --radius-lg: 8px;
+            --shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
             --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            --outline: 2px solid var(--primary);
+            --outline-offset: 2px;
         }
 
         * {
@@ -35,28 +37,29 @@
         }
 
         body {
-            font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.5;
             overflow-x: hidden;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1.5rem;
+            padding: 0 1rem;
         }
 
         /* Header */
         header {
             background: var(--bg);
-            padding: 1rem 0;
+            padding: 0.75rem 0;
             border-bottom: 1px solid var(--border);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .header-content {
@@ -68,8 +71,8 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-size: 1.5rem;
+            gap: 0.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
             color: var(--text);
             text-decoration: none;
@@ -81,34 +84,51 @@
         }
 
         .logo-icon {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             background: var(--text);
-            border-radius: 8px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: bold;
+            font-size: 0.875rem;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         nav ul li a {
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
+            font-size: 0.875rem;
             transition: var(--transition);
             position: relative;
-            padding: 0.5rem 0;
+            padding: 0.25rem 0;
         }
 
         nav ul li a:hover {
             color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
         }
 
         .mobile-menu {
@@ -116,18 +136,21 @@
             background: none;
             border: none;
             color: var(--text);
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             cursor: pointer;
             transition: var(--transition);
+            padding: 0.25rem;
+            border-radius: var(--radius);
         }
 
         .mobile-menu:hover {
             color: var(--primary);
+            background: var(--bg-card);
         }
 
         /* Hero Section */
         .hero {
-            padding: 10rem 0 6rem;
+            padding: 8rem 0 4rem;
             text-align: center;
             background: var(--bg);
             position: relative;
@@ -135,9 +158,9 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
         }
 
@@ -147,10 +170,10 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1rem;
             color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto 3rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
         .btn {
@@ -159,17 +182,21 @@
             gap: 0.5rem;
             background: var(--primary);
             color: white;
-            padding: 0.875rem 2rem;
+            padding: 0.75rem 1.5rem;
             border-radius: var(--radius);
             text-decoration: none;
             font-weight: 600;
+            font-size: 0.875rem;
             transition: var(--transition);
             border: none;
             cursor: pointer;
+            outline: none;
         }
 
-        .btn:hover {
+        .btn:hover, .btn:focus {
             background: var(--primary-dark);
+            outline: var(--outline);
+            outline-offset: var(--outline-offset);
         }
 
         .btn-outline {
@@ -178,44 +205,46 @@
             color: var(--primary);
         }
 
-        .btn-outline:hover {
+        .btn-outline:hover, .btn-outline:focus {
             background: var(--primary);
             color: white;
+            outline: var(--outline);
+            outline-offset: var(--outline-offset);
         }
 
         /* Products Section */
         .section {
-            padding: 6rem 0;
+            padding: 4rem 0;
         }
 
         .section-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .section-title p {
             color: var(--text-light);
-            font-size: 1.125rem;
-            max-width: 600px;
+            font-size: 1rem;
+            max-width: 500px;
             margin: 0 auto;
         }
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
 
         .package-card {
             background: var(--bg-card);
             border-radius: var(--radius-lg);
-            padding: 2rem;
+            padding: 1.5rem;
             box-shadow: var(--shadow);
             border: 1px solid var(--border);
             transition: var(--transition);
@@ -223,46 +252,49 @@
             overflow: hidden;
         }
 
-        .package-card:hover {
-            transform: translateY(-5px);
+        .package-card:hover, .package-card:focus-within {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
             background: var(--bg-card-hover);
+            outline: var(--outline);
+            outline-offset: var(--outline-offset);
         }
 
         .package-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .package-name {
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
         }
 
         .package-price {
-            font-size: 1.75rem;
+            font-size: 1.5rem;
             font-weight: 800;
             color: var(--primary);
         }
 
         .package-features {
             list-style: none;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .package-features li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
+            font-size: 0.875rem;
         }
 
         .package-features i {
             color: var(--primary);
-            width: 24px;
-            height: 24px;
+            width: 18px;
+            height: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -282,13 +314,13 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
 
         .feature-card {
             text-align: center;
-            padding: 2rem 1.5rem;
+            padding: 1.5rem 1rem;
             background: var(--bg);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
@@ -296,44 +328,47 @@
             transition: var(--transition);
         }
 
-        .feature-card:hover {
-            transform: translateY(-5px);
+        .feature-card:hover, .feature-card:focus-within {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
+            outline: var(--outline);
+            outline-offset: var(--outline-offset);
         }
 
         .feature-icon {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: var(--text);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
+            margin: 0 auto 1rem;
             color: white;
-            font-size: 1.75rem;
+            font-size: 1.5rem;
         }
 
         .feature-title {
-            font-size: 1.375rem;
+            font-size: 1.125rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .feature-description {
             color: var(--text-light);
+            font-size: 0.875rem;
         }
 
         /* Contact Section */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
         }
 
         .contact-card {
             text-align: center;
-            padding: 2.5rem 2rem;
+            padding: 2rem 1.5rem;
             background: var(--bg-card);
             border-radius: var(--radius-lg);
             box-shadow: var(--shadow);
@@ -341,29 +376,31 @@
             transition: var(--transition);
         }
 
-        .contact-card:hover {
-            transform: translateY(-5px);
+        .contact-card:hover, .contact-card:focus-within {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
+            outline: var(--outline);
+            outline-offset: var(--outline-offset);
         }
 
         /* Footer */
         footer {
             background: var(--bg-card);
-            padding: 4rem 0 2rem;
+            padding: 3rem 0 1.5rem;
             border-top: 1px solid var(--border);
         }
 
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
         .footer-column h3 {
-            font-size: 1.375rem;
+            font-size: 1.125rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .footer-column ul {
@@ -371,12 +408,13 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .footer-column ul li a {
             color: var(--text-light);
             text-decoration: none;
+            font-size: 0.875rem;
             transition: var(--transition);
         }
 
@@ -386,17 +424,17 @@
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--border);
             color: var(--text-muted);
-            font-size: 0.9rem;
+            font-size: 0.8rem;
         }
 
         /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -405,19 +443,20 @@
         }
 
         .fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
         }
 
         .delay-1 {
-            animation-delay: 0.2s;
+            animation-delay: 0.1s;
         }
 
         .delay-2 {
-            animation-delay: 0.4s;
+            animation-delay: 0.2s;
         }
 
         .delay-3 {
-            animation-delay: 0.6s;
+            animation-delay: 0.3s;
         }
 
         /* Mobile Styles */
@@ -425,12 +464,13 @@
             nav {
                 display: none;
                 position: absolute;
-                top: 70px;
+                top: 60px;
                 left: 0;
                 width: 100%;
                 background: var(--bg);
-                padding: 1.5rem;
+                padding: 1rem;
                 border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow-lg);
             }
 
             nav.active {
@@ -440,7 +480,7 @@
 
             nav ul {
                 flex-direction: column;
-                gap: 1.5rem;
+                gap: 1rem;
             }
 
             .mobile-menu {
@@ -448,23 +488,27 @@
             }
 
             .hero {
-                padding: 8rem 0 4rem;
+                padding: 6rem 0 3rem;
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero p {
-                font-size: 1.125rem;
+                font-size: 0.9rem;
             }
 
             .section {
-                padding: 4rem 0;
+                padding: 3rem 0;
             }
 
             .section-title h2 {
-                font-size: 2rem;
+                font-size: 1.75rem;
+            }
+
+            .packages-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -488,7 +532,7 @@
                     </ul>
                 </nav>
 
-                <button class="mobile-menu" id="mobile-menu">
+                <button class="mobile-menu" id="mobile-menu" aria-label="Toggle menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -505,7 +549,7 @@
             <p class="fade-in-up delay-1">Nikmati pengalaman hosting game terbaik dengan panel Pterodactyl VVIP. Garansi 20 hari, dukungan 24/7, dan harga terjangkau.</p>
             <div class="fade-in-up delay-2">
                 <a href="#packages" class="btn">Lihat Paket</a>
-                <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;">Hubungi Kami</a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 0.75rem;">Hubungi Kami</a>
             </div>
         </div>
     </section>
@@ -731,7 +775,7 @@
                     </div>
                     <h3 class="feature-title">WhatsApp</h3>
                     <p class="feature-description">6283129087226</p>
-                    <a href="https://wa.me/6283129087226" class="btn" style="margin-top: 1.5rem;">Hubungi</a>
+                    <a href="https://wa.me/6283129087226" class="btn" style="margin-top: 1.25rem;">Hubungi</a>
                 </div>
 
                 <div class="contact-card fade-in-up delay-1">
@@ -740,7 +784,7 @@
                     </div>
                     <h3 class="feature-title">Telegram</h3>
                     <p class="feature-description">@agungdev</p>
-                    <a href="https://t.me/agungdev" class="btn" style="margin-top: 1.5rem;">Hubungi</a>
+                    <a href="https://t.me/agungdev" class="btn" style="margin-top: 1.25rem;">Hubungi</a>
                 </div>
             </div>
         </div>
@@ -752,7 +796,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>PANELTLY</h3>
-                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">Penyedia panel hosting Pterodactyl terpercaya dengan layanan VVIP bergaransi.</p>
+                    <p style="color: var(--text-light); margin-bottom: 1rem; font-size: 0.875rem;">Penyedia panel hosting Pterodactyl terpercaya dengan layanan VVIP bergaransi.</p>
                 </div>
 
                 <div class="footer-column">
@@ -786,17 +830,17 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 if (targetId === '#') return;
-                
+
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
                     window.scrollTo({
-                        top: targetElement.offsetTop - 100,
+                        top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
                     });
-                    
+
                     // Close mobile menu after clicking a link
                     nav.classList.remove('active');
                 }
@@ -810,10 +854,10 @@
             button.addEventListener('click', () => {
                 const packageName = button.closest('.package-card').querySelector('.package-name').textContent;
                 const packagePrice = button.closest('.package-card').querySelector('.package-price').textContent;
-                
+
                 const message = `Halo, saya ingin memesan ${packageName} dengan harga ${packagePrice}. Bagaimana cara pemesanannya?`;
                 const whatsappUrl = `https://wa.me/6283129087226?text=${encodeURIComponent(message)}`;
-                
+
                 window.open(whatsappUrl, '_blank');
             });
         });
@@ -840,7 +884,7 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
-            if (window.scrollY > 100) {
+            if (window.scrollY > 50) {
                 header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
             } else {
                 header.style.boxShadow = 'none';
