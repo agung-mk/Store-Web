@@ -278,6 +278,10 @@
             color: var(--primary);
         }
 
+        .package-price::before {
+            content: "Rp ";
+        }
+
         .package-features {
             list-style: none;
             margin-bottom: 1.5rem;
@@ -430,6 +434,117 @@
             font-size: 0.8rem;
         }
 
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .close-modal:hover {
+            color: var(--text);
+        }
+
+        .modal-body {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .modal-body h3 {
+            color: var(--text);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .modal-body p {
+            margin-bottom: 1rem;
+        }
+
+        .modal-body ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Checkout Form */
+        .checkout-form {
+            display: none;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: var(--outline);
+            border-color: var(--primary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -510,6 +625,10 @@
             .packages-grid {
                 grid-template-columns: 1fr;
             }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -529,6 +648,7 @@
                         <li><a href="#packages">Paket</a></li>
                         <li><a href="#features">Fitur</a></li>
                         <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#" id="terms-link">Syarat & Ketentuan</a></li>
                     </ul>
                 </nav>
 
@@ -567,150 +687,180 @@
                 <div class="package-card fade-in-up">
                     <div class="package-header">
                         <div class="package-name">Paket 1GB</div>
-                        <div class="package-price">Rp 2.000</div>
+                        <div class="package-price">2.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 1GB</li>
+                        <li><i class="fas fa-check"></i> Disk 10GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 1 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 1GB" data-price="2000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 2GB -->
                 <div class="package-card fade-in-up delay-1">
                     <div class="package-header">
                         <div class="package-name">Paket 2GB</div>
-                        <div class="package-price">Rp 4.000</div>
+                        <div class="package-price">4.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 2GB</li>
+                        <li><i class="fas fa-check"></i> Disk 20GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 1 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 2GB" data-price="4000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 3GB -->
                 <div class="package-card fade-in-up delay-2">
                     <div class="package-header">
                         <div class="package-name">Paket 3GB</div>
-                        <div class="package-price">Rp 6.000</div>
+                        <div class="package-price">6.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 3GB</li>
+                        <li><i class="fas fa-check"></i> Disk 30GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 2 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 3GB" data-price="6000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 4GB -->
                 <div class="package-card fade-in-up">
                     <div class="package-header">
                         <div class="package-name">Paket 4GB</div>
-                        <div class="package-price">Rp 8.000</div>
+                        <div class="package-price">8.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 4GB</li>
+                        <li><i class="fas fa-check"></i> Disk 40GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 2 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 4GB" data-price="8000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 5GB -->
                 <div class="package-card fade-in-up delay-1">
                     <div class="package-header">
                         <div class="package-name">Paket 5GB</div>
-                        <div class="package-price">Rp 10.000</div>
+                        <div class="package-price">10.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 5GB</li>
+                        <li><i class="fas fa-check"></i> Disk 50GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 2 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 5GB" data-price="10000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 6GB -->
                 <div class="package-card fade-in-up delay-2">
                     <div class="package-header">
                         <div class="package-name">Paket 6GB</div>
-                        <div class="package-price">Rp 12.000</div>
+                        <div class="package-price">12.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 6GB</li>
+                        <li><i class="fas fa-check"></i> Disk 60GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 3 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 6GB" data-price="12000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 7GB -->
                 <div class="package-card fade-in-up">
                     <div class="package-header">
                         <div class="package-name">Paket 7GB</div>
-                        <div class="package-price">Rp 14.000</div>
+                        <div class="package-price">14.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 7GB</li>
+                        <li><i class="fas fa-check"></i> Disk 70GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 3 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 7GB" data-price="14000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 8GB -->
                 <div class="package-card fade-in-up delay-1">
                     <div class="package-header">
                         <div class="package-name">Paket 8GB</div>
-                        <div class="package-price">Rp 16.000</div>
+                        <div class="package-price">16.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 8GB</li>
+                        <li><i class="fas fa-check"></i> Disk 80GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 4 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 8GB" data-price="16000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 9GB -->
                 <div class="package-card fade-in-up delay-2">
                     <div class="package-header">
                         <div class="package-name">Paket 9GB</div>
-                        <div class="package-price">Rp 18.000</div>
+                        <div class="package-price">18.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 9GB</li>
+                        <li><i class="fas fa-check"></i> Disk 90GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 4 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 9GB" data-price="18000">Pesan Sekarang</button>
                 </div>
 
                 <!-- Paket 10GB -->
                 <div class="package-card fade-in-up">
                     <div class="package-header">
                         <div class="package-name">Paket 10GB</div>
-                        <div class="package-price">Rp 20.000</div>
+                        <div class="package-price">20.000</div>
                     </div>
                     <ul class="package-features">
+                        <li><i class="fas fa-check"></i> RAM 10GB</li>
+                        <li><i class="fas fa-check"></i> Disk 100GB SSD</li>
+                        <li><i class="fas fa-check"></i> CPU 4 Core</li>
                         <li><i class="fas fa-check"></i> Panel VVIP</li>
                         <li><i class="fas fa-check"></i> Garansi 20 Hari</li>
                         <li><i class="fas fa-check"></i> Masa Aktif 30 Hari</li>
                         <li><i class="fas fa-check"></i> Support 24/7</li>
                     </ul>
-                    <button class="btn package-btn">Pesan Sekarang</button>
+                    <button class="btn package-btn" data-package="Paket 10GB" data-price="20000">Pesan Sekarang</button>
                 </div>
             </div>
         </div>
@@ -768,7 +918,15 @@
                 <p>Butuh bantuan? Tim support kami siap membantu</p>
             </div>
 
-          
+            <div class="contact-grid">
+                <div class="contact-card fade-in-up">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="feature-title">WhatsApp</h3>
+                    <p class="feature-description">+62 831-2908-7226</p>
+                    <a href="https://wa.me/6283129087226" class="btn" style="margin-top: 1.25rem;">Hubungi</a>
+                </div>
 
                 <div class="contact-card fade-in-up delay-1">
                     <div class="feature-icon">
@@ -798,9 +956,18 @@
                         <li><a href="#packages">Paket Hosting</a></li>
                         <li><a href="#features">Fitur</a></li>
                         <li><a href="#contact">Kontak</a></li>
+                        <li><a href="#" id="footer-terms-link">Syarat & Ketentuan</a></li>
                     </ul>
                 </div>
 
+                <div class="footer-column">
+                    <h3>Kontak</h3>
+                    <ul>
+                        <li><i class="fab fa-whatsapp"></i> +62 831-2908-7226</li>
+                        <li><i class="fab fa-telegram"></i> @agungdev</li>
+                        <li><i class="fas fa-envelope"></i> agungdev3@gmil.com</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="copyright">
@@ -808,6 +975,91 @@
             </div>
         </div>
     </footer>
+
+    <!-- Modal for Terms and Conditions -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Syarat dan Ketentuan</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>1. Ketentuan Umum</h3>
+                <p>Dengan menggunakan layanan PANELTLY, Anda setuju untuk mematuhi syarat dan ketentuan yang ditetapkan di bawah ini.</p>
+
+                <h3>2. Layanan</h3>
+                <p>PANELTLY menyediakan layanan hosting panel Pterodactyl dengan spesifikasi yang telah ditentukan untuk setiap paket.</p>
+
+                <h3>3. Pembayaran</h3>
+                <p>Semua pembayaran harus dilakukan dalam mata uang Rupiah (IDR) melalui metode pembayaran yang tersedia.</p>
+
+                <h3>4. Aktivasi Layanan</h3>
+                <p>Layanan akan diaktifkan dalam waktu 5-15 menit setelah pembayaran dikonfirmasi.</p>
+
+                <h3>5. Garansi</h3>
+                <p>Kami memberikan garansi 20 hari untuk semua layanan yang kami tawarkan.</p>
+
+                <h3>6. Kebijakan Pengembalian Dana</h3>
+                <p>Pengembalian dana hanya dapat dilakukan dalam kondisi berikut:</p>
+                <ul>
+                    <li>Layanan tidak dapat diaktifkan dalam waktu 24 jam</li>
+                    <li>Terjadi gangguan server yang berkelanjutan lebih dari 48 jam</li>
+                    <li>Ketidaksesuaian spesifikasi yang dijanjikan</li>
+                </ul>
+                <p>Pengembalian dana tidak berlaku untuk:</p>
+                <ul>
+                    <li>Pelanggaran terhadap syarat dan ketentuan</li>
+                    <li>Penyalahgunaan layanan</li>
+                    <li>Permintaan pembatalan setelah 7 hari penggunaan</li>
+                </ul>
+
+                <h3>7. Dukungan Teknis</h3>
+                <p>Kami menyediakan dukungan teknis 24/7 melalui WhatsApp dan Telegram.</p>
+
+                <h3>8. Pembatasan Tanggung Jawab</h3>
+                <p>PANELTLY tidak bertanggung jawab atas kehilangan data atau kerugian yang timbul akibat force majeure.</p>
+
+                <h3>9. Perubahan Syarat dan Ketentuan</h3>
+                <p>Kami berhak mengubah syarat dan ketentuan ini kapan saja tanpa pemberitahuan sebelumnya.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Form -->
+    <div class="checkout-form" id="checkout-form">
+        <h3 style="margin-bottom: 1.5rem;">Form Pemesanan</h3>
+        <form id="order-form">
+            <div class="form-group">
+                <label for="package">Paket yang Dipilih</label>
+                <input type="text" id="package" readonly>
+            </div>
+            <div class="form-group">
+                <label for="price">Harga</label>
+                <input type="text" id="price" readonly>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Nomor WhatsApp</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Catatan (Opsional)</label>
+                <textarea id="notes" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn" style="width: 100%;">Lanjutkan Pembayaran</button>
+            </div>
+        </form>
+    </div>
 
     <script>
         // Mobile Menu Toggle
@@ -839,19 +1091,76 @@
             });
         });
 
-        // Package buttons
+        // Terms Modal
+        const termsModal = document.getElementById('terms-modal');
+        const termsLink = document.getElementById('terms-link');
+        const footerTermsLink = document.getElementById('footer-terms-link');
+        const closeModal = document.querySelector('.close-modal');
+
+        function openTermsModal() {
+            termsModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeTermsModal() {
+            termsModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        termsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openTermsModal();
+        });
+
+        footerTermsLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            openTermsModal();
+        });
+
+        closeModal.addEventListener('click', closeTermsModal);
+
+        termsModal.addEventListener('click', (e) => {
+            if (e.target === termsModal) {
+                closeTermsModal();
+            }
+        });
+
+        // Checkout functionality
         const packageButtons = document.querySelectorAll('.package-btn');
+        const checkoutForm = document.getElementById('checkout-form');
+        const orderForm = document.getElementById('order-form');
+        const packageInput = document.getElementById('package');
+        const priceInput = document.getElementById('price');
 
         packageButtons.forEach(button => {
             button.addEventListener('click', () => {
-                const packageName = button.closest('.package-card').querySelector('.package-name').textContent;
-                const packagePrice = button.closest('.package-card').querySelector('.package-price').textContent;
-
-                const message = `Halo, saya ingin memesan ${packageName} dengan harga ${packagePrice}. Bagaimana cara pemesanannya?`;
-                const whatsappUrl = `https://wa.me/6283129087226?text=${encodeURIComponent(message)}`;
-
-                window.open(whatsappUrl, '_blank');
+                const packageName = button.getAttribute('data-package');
+                const packagePrice = button.getAttribute('data-price');
+                
+                packageInput.value = packageName;
+                priceInput.value = `Rp ${parseInt(packagePrice).toLocaleString('id-ID')}`;
+                
+                checkoutForm.style.display = 'block';
+                checkoutForm.scrollIntoView({ behavior: 'smooth' });
             });
+        });
+
+        orderForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const packageName = packageInput.value;
+            const price = priceInput.value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const notes = document.getElementById('notes').value;
+            
+            // Simulasi proses pembayaran
+            alert(`Terima kasih ${name}! Pesanan Anda untuk ${packageName} seharga ${price} telah diterima. Tim kami akan menghubungi Anda melalui WhatsApp di ${phone} untuk proses pembayaran.`);
+            
+            // Reset form
+            orderForm.reset();
+            checkoutForm.style.display = 'none';
         });
 
         // Animation on scroll
